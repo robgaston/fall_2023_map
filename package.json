@@ -1,0 +1,17 @@
+{
+    "devDependencies": {
+        "@turf/turf": "^6.5.0",
+        "parcel": "^2.3.2",
+        "rimraf": "^4.3.0"
+    },
+    "source": "src/index.html",
+    "scripts": {
+        "clean:output": "rimraf docs",
+        "build": "npm run clean:output && parcel build --dist-dir docs --public-url ./ --no-cache",
+        "start": "parcel",
+        "process": "cd src && node --experimental-modules --experimental-json-modules process.mjs"
+    },
+    "dependencies": {
+        "mapbox-gl": "^2.6.0"
+    }
+}
