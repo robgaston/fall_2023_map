@@ -1,0 +1,19 @@
+{
+    "devDependencies": {
+        "@turf/turf": "^5.1.6",
+        "css-loader": "^1.0.0",
+        "csv-loader": "^3.0.3",
+        "html-webpack-plugin": "^3.2.0",
+        "style-loader": "^0.21.0",
+        "webpack": "^4.16.3",
+        "webpack-cli": "^3.1.0",
+        "webpack-serve": "^2.0.2"
+    },
+    "scripts": {
+        "build": "webpack",
+        "serve": "webpack-serve"
+    },
+    "dependencies": {
+        "mapbox-gl": "^2.4.1"
+    }
+}

@@ -1,0 +1,98 @@
+{
+    "container": "map",
+    "accessToken": "pk.eyJ1Ijoicmdhc3RvbiIsImEiOiJJYTdoRWNJIn0.MN6DrT07IEKXadCU8xpUMg",
+    "style": {
+        "version": 8,
+        "sprite": "mapbox://sprites/rgaston/cktw7b5z30i0617mjbgxfp47v/ck2u8j60r58fu0sgyxrigm3cu",
+        "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+        "layers": [
+            {
+                "id": "background",
+                "type": "background",
+                "layout": {},
+                "paint": {
+                    "background-color": "#f7f7f7"
+                }
+            },
+            {
+                "layout": {},
+                "filter": [
+                    "all",
+                    ["match", ["get", "type"], ["state"], true, false],
+                    ["!=", ["get", "state_name"], "Puerto Rico"]
+                ]
+                ,
+                "type": "line",
+                "source": "state_fips",
+                "id": "state-boundaries",
+                "paint": {
+                    "line-color": "hsl(0, 0%, 34%)"
+                },
+                "source-layer": "albersusa"
+            },
+            {
+                "layout": {},
+                "filter": ["match", ["get", "type"], ["state"], true, false],
+                "type": "circle",
+                "source": "state_fips",
+                "id": "state-rings",
+                "paint": {
+                    "circle-color": "transparent",
+                    "circle-stroke-color": [
+                        "case",
+                        [">", ["feature-state", "dem"], ["feature-state", "gop"]],
+                        "blue",
+                        "red"
+                    ],
+                    "circle-radius": [
+                        "interpolate",
+                        ["exponential", 2],
+                        ["zoom"],
+                        0, 0,
+                        20, [
+                            "*", [
+                                "*", [
+                                    "/", [
+                                        "case",
+                                        [">", ["feature-state", "dem"], ["feature-state", "gop"]],
+                                        ["feature-state", "gop"],
+                                        ["feature-state", "dem"]
+                                    ], ["+", ["feature-state", "dem"], ["feature-state", "gop"]]
+                                ], ["feature-state", "electors"]
+                            ], 90000
+                        ]
+                    ],
+                    "circle-stroke-width": [
+                        "interpolate",
+                        ["exponential", 2],
+                        ["zoom"],
+                        0, 0,
+                        20, [
+                            "*", [
+                                "*", [
+                                    "/", [
+                                        "case",
+                                        [">", ["feature-state", "dem"], ["feature-state", "gop"]],
+                                        ["-", ["feature-state", "dem"], ["feature-state", "gop"]],
+                                        ["-", ["feature-state", "gop"], ["feature-state", "dem"]]
+                                    ], ["+", ["feature-state", "dem"], ["feature-state", "gop"]]
+                                ], ["feature-state", "electors"]
+                            ], 90000
+                        ]
+                    ]
+                },
+                "source-layer": "albersusa-points"
+            }
+        ],
+        "sources": {
+            "state_fips": {
+                "url": "mapbox://mbxsolutions.albersusa,mbxsolutions.albersusa-points",
+                "type": "vector",
+                "promoteId": "state_fips"
+            }
+        }
+    },
+    "maxZoom": 10,
+    "bounds": [[-25.959, -17.042], [23.284, 14.293]],
+    "maxBounds": [[-28, -45], [26, 45]]
+}
