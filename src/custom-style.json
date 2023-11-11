@@ -1,4 +1,44 @@
 {
-    "sources": {},
-    "layers": []
+    "sources": {
+        "neighborhoods-polygons": {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": []
+            }
+        }
+    },
+    "layers": [
+        {
+            "id": "neighborhoods-outline",
+            "type": "line",
+            "source": "neighborhoods-polygons",
+            "paint": {
+                "line-width": 2
+            }
+        },
+        {
+            "id": "neighborhoods-fill",
+            "type": "fill-extrusion",
+            "source": "neighborhoods-polygons",
+            "paint": {
+                "fill-extrusion-opacity": 0.5,
+                "fill-extrusion-color": [
+                    "step",
+                    ["get", "count"],
+                    "rgb(239,243,255)",
+                    50, "rgb(198,219,239)",
+                    100, "rgb(158,202,225)",
+                    300, "rgb(107,174,214)",
+                    600, "rgb(49,130,189)",
+                    1000, "rgb(8,81,156)"
+                ],
+                "fill-extrusion-height": [
+                    "*",
+                    ["get", "count"],
+                    5
+                ]
+            }
+        }
+    ]
 }
