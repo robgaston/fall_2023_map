@@ -1,7 +1,7 @@
 {
     "container": "map",
     "accessToken": "pk.eyJ1Ijoicmdhc3RvbiIsImEiOiJJYTdoRWNJIn0.MN6DrT07IEKXadCU8xpUMg",
-    "style": "mapbox://styles/rgaston/clokfowp5000301pqgn2m4wop",
+    "style": "mapbox://styles/mapbox/standard",
     "center": [
         -118.3875,
         34.03756

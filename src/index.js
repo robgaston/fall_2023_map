@@ -20,7 +20,10 @@ function initPopup() {
             popup.style.display = "block";
             neighborhoodNameElement.textContent = hoveredFeature.properties.name;
             countElement.textContent = hoveredFeature.properties.count;
-            map.setFeatureState(hoveredFeature, {
+            map.setFeatureState({
+                source: "neighborhoods-polygons",
+                id: hoveredFeature.id
+            }, {
                 hover: true
             });
         }
